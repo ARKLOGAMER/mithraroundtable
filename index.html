@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rajan studio</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+        font-family: Arial, sans-serif;
+      }
+
+      .slider {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slides {
+        display: flex;
+        height: 100%;
+        scroll-behavior: smooth;
+        transition: transform 0.5s ease;
+      }
+
+      .slide {
+        min-width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .slide img:active {
+        transform: scale(0.95);
+      }
+
+      @keyframes autoSlide {
+        0%,
+        20% {
+          transform: translateX(0%);
+        }
+        25%,
+        45% {
+          transform: translateX(-100%);
+        }
+        50%,
+        70% {
+          transform: translateX(-200%);
+        }
+        75%,
+        95% {
+          transform: translateX(-300%);
+        }
+        100% {
+          transform: translateX(0%);
+        }
+      }
+
+      .slider:hover .slides {
+        animation-play-state: paused;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider">
+      <div class="slides" id="slides">
+        <div class="slide">
+          <img
+            src="./WhatsApp Image 2024-08-22 at 19.56.26_05be4869.jpg"
+            alt="Image 1"
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="./WhatsApp Image 2024-08-22 at 19.56.26_7597f0ba.jpg"
+            alt="Image 2"
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="./WhatsApp Image 2024-08-22 at 19.56.26_b8520cf5.jpg"
+            alt="Image 3"
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="./WhatsApp Image 2024-08-22 at 19.56.51_69fae792.jpg"
+            alt="Image 4"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const slides = document.getElementById("slides");
+      let currentIndex = 0;
+      const totalSlides = slides.children.length;
+
+      function autoSlide() {
+        currentIndex++;
+        if (currentIndex >= totalSlides) {
+          currentIndex = 0;
+        }
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      let slideInterval = setInterval(autoSlide, 3000);
+
+      slides.addEventListener("mousedown", () => {
+        clearInterval(slideInterval);
+      });
+
+      slides.addEventListener("mouseup", () => {
+        slideInterval = setInterval(autoSlide, 3000);
+      });
+
+      slides.addEventListener("touchstart", () => {
+        clearInterval(slideInterval);
+      });
+
+      slides.addEventListener("touchend", () => {
+        slideInterval = setInterval(autoSlide, 3000);
+      });
+    </script>
+  </body>
+</html>
