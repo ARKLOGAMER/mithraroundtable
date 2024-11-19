@@ -92,14 +92,14 @@
         slides.style.transform = `translateX(-${currentIndex * 100}%)`;
       }
 
-      let slideInterval = setInterval(autoSlide, 300000); // 5 minutes = 300,000 milliseconds
+      let slideInterval = setInterval(autoSlide, 30000); // 30 seconds = 30,000 milliseconds
 
       slides.addEventListener("mousedown", () => {
         clearInterval(slideInterval);
       });
 
       slides.addEventListener("mouseup", () => {
-        slideInterval = setInterval(autoSlide, 300000);
+        slideInterval = setInterval(autoSlide, 30000);
       });
 
       slides.addEventListener("touchstart", () => {
@@ -107,7 +107,7 @@
       });
 
       slides.addEventListener("touchend", () => {
-        slideInterval = setInterval(autoSlide, 300000);
+        slideInterval = setInterval(autoSlide, 30000);
       });
     </script>
   </body>
